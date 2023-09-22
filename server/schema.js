@@ -9,7 +9,7 @@ const userschema = mongoose.Schema({
   latitude: String,
   longitude: String,
   created_at: String,
-  updated_at: Date,
+  updated_at: String,
 });
 // autoIncrement.initialize(mongoose.connection);
 // userschema.plugin(autoIncrement.plugin,'user');

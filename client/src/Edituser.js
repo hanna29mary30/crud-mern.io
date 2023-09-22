@@ -14,6 +14,7 @@ const value ={
     latitude:"",
     longitude:"",
     created_at:"",
+    updated_at:"",
 }
 
 
@@ -34,10 +35,31 @@ const loadUserDetails = async() => {
     console.log(response.data)
     setUser(response.data);
 }
+const updateAt = () => {
+  const currentDate = new Date();
+  const formattedDate = `${currentDate.getFullYear()}-${(
+    currentDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}-${currentDate
+    .getDate()
+    .toString()
+    .padStart(
+      2,
+      "0"
+    )} ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
+
+  setUser((user) => {
+    return { ...user, updated_at: formattedDate };
+  });
+};
 
 const onValueChange=(e)=>{
 console.log(e.target.name,e.target.value)
 setUser({...user, [e.target.name]: e.target.value, });
+if (!user.updated_at) {
+  updateAt();
+}
 console.log(user)
 }
 
