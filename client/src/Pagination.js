@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const maxVisiblePages = 5;
@@ -14,23 +14,36 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <nav aria-label="Page navigation">
       <ul className="pagination">
-        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-          <button className="page-link" onClick={() => handlePageClick(currentPage - 1)}>
+        <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+          <button
+            className="page-link"
+            onClick={() => handlePageClick(currentPage - 1)}
+          >
             Previous
           </button>
         </li>
-        {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((page) => (
+        {Array.from(
+          { length: endPage - startPage + 1 },
+          (_, i) => startPage + i
+        ).map((page) => (
           <li
             key={page}
-            className={`page-item ${currentPage === page ? 'active' : ''}`}
+            className={`page-item ${currentPage === page ? "active" : ""}`}
           >
             <button className="page-link" onClick={() => handlePageClick(page)}>
               {page}
             </button>
           </li>
         ))}
-        <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-          <button className="page-link" onClick={() => handlePageClick(currentPage + 1)}>
+        <li
+          className={`page-item ${
+            currentPage === totalPages ? "disabled" : ""
+          }`}
+        >
+          <button
+            className="page-link"
+            onClick={() => handlePageClick(currentPage + 1)}
+          >
             Next
           </button>
         </li>

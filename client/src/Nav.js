@@ -31,7 +31,7 @@ const Nav = () => {
   return (
     <div className="mr-auto">
       <nav className="navbar navbar-expand-lg navbar-light bg-dark justify-content-between">
-        <a className="navbar-brand text-light ml-4" >
+        <a className="navbar-brand text-light ml-4">
           Customer Details Management
         </a>
         <div className="mr-4">
