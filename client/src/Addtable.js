@@ -1,29 +1,37 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useContext} from "react";
 import { getUsers, deleteUser } from "./api";
 import Swal from "sweetalert2";
 import Pagination from "./Pagination";
-// import { useSearch } from "./SearchContext";
+import { MyContext } from './MyContext';
+
+export const searchdisp = (search) => {
+  console.log(search)
+  // setUsers(search);
+}
 const Addtable = () => {
   const [users, setUsers] = useState([]);
   const [CurrentPage, setCurrentPage] = useState(1);
-  // const { search } = useSearch();
+  const { search, setSearch } = useContext(MyContext);
   const recordPerPage = 8;
   const lastIndex = CurrentPage * recordPerPage;
   const firstIndex = lastIndex - recordPerPage;
   const records = users.slice(firstIndex, lastIndex);
   const pages = Math.ceil(users.length / recordPerPage);
   const numbers = [...Array(pages + 1).keys()].slice(1);
-
-  useEffect(() => {
+ 
+ ; useEffect(() => {
     getAllUsers();
+    
   }, []);
 
   const getAllUsers = async () => {
     let response = await getUsers();
     setUsers(response.data);
   };
+ 
+  
 
   const deleteUserData = (id) => {
     Swal.fire({
@@ -114,4 +122,5 @@ const Addtable = () => {
     setCurrentPage(id);
   }
 };
+
 export default Addtable;

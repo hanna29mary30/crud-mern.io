@@ -4,9 +4,12 @@ import Nav from "./Nav";
 import Addtable from "./Addtable";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Edituser from "./Edituser";
-import { SearchProvider } from "./SearchContext";
+import { MyContext } from "./MyContext";
+import { useState } from "react";
+
 function App() {
-  return (<SearchProvider>
+  const [search, setSearch] = useState("users");
+  return (<MyContext.Provider value={{ search, setSearch }}>
     <BrowserRouter>
       <Nav />
       <Routes>
@@ -15,7 +18,7 @@ function App() {
         <Route path="/edit/:id" element={<Edituser />} />
       </Routes>
     </BrowserRouter>
-    </SearchProvider>
+    </MyContext.Provider>
   );
 }
 

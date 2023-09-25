@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getUsers } from "./api";
-import Addtable from "./Addtable";
-import { useSearch } from "./SearchContext";
+import {searchdisp} from "./Addtable"
+
 const Nav = () => {
   const [users, setUsers] = useState([]);
   const [searchval, setSearchval] = useState();
@@ -18,14 +18,17 @@ const Nav = () => {
   const Search = (val) => {
     setSearchval(val);
     if (val != "") {
-      console.log(searchval);
+      // console.log(searchval);
       const searcheddata = users.filter((f) =>
         f.first_name.toLowerCase().includes(searchval)
       );
-      console.log(searcheddata);
+      // console.log(searcheddata);
       setSearch(searcheddata);
+      
+      
     } else {
       setSearch(users);
+      
     }
   };
   return (
@@ -34,7 +37,8 @@ const Nav = () => {
         <a className="navbar-brand text-light ml-4">
           Customer Details Management
         </a>
-        <div className="mr-4">
+        <div className="d-flex flex-column flex-lg-row">
+        <div className="auto-right">
           <input
             className="form-control"
             value={searchval}
@@ -44,6 +48,12 @@ const Nav = () => {
             aria-label="Search"
             onChange={(e) => Search(e.target.value)}
           />
+        </div>
+        
+        <div>
+        <button type="button" className="btn btn-primary" onClick={() => searchdisp(search,setUsers)}>Search</button>
+        
+        </div>
         </div>
       </nav>
     </div>
